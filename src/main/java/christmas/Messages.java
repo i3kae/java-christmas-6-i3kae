@@ -14,4 +14,15 @@ public class Messages {
             return message;
         }
     }
+
+    public enum ErrorMessage{
+        SPLIT_ERROR("[ERROR] 문자열의 구분이 비정상적입니다.");
+        private final String message;
+        ErrorMessage(String message){
+            this.message = message;
+        }
+        public String getMessage(){
+            return message;
+        }
+    }
 }
