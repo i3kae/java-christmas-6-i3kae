@@ -16,7 +16,12 @@ public class Messages {
     }
 
     public enum ErrorMessage{
-        SPLIT_ERROR("[ERROR] 문자열의 구분이 비정상적입니다.");
+        SPLIT_ERROR("[ERROR] 문자열의 구분이 비정상적입니다."),
+        EMPTY_STR_ERROR("[ERROR] 비어있는 문자열이 들어왔습니다.."),
+        EMPTY_REGEX_ERROR("[ERROR] 비어있는 구분자가 들어왔습니다."),
+        NON_NUMERIC("[ERROR] 숫자가 아닌 값이 들어왔습니다."),
+        NOT_IN_MENULIST("[ERROR] 메뉴 목록에 포함되어 있지 않은 메뉴입니다."),
+        INVALID_ORDER("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         private final String message;
         ErrorMessage(String message){
             this.message = message;
