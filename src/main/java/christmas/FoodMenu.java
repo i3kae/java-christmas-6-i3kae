@@ -1,6 +1,11 @@
 package christmas;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 public class FoodMenu {
+    private static final String COMMA = ",";
+    private static final String HYPEN = "-";
     public enum MenuType{
         APPETIZER, MAIN, DESSERT, DRINK;
     }
@@ -37,5 +42,14 @@ public class FoodMenu {
         public MenuType getMenuType(){
             return menuType;
         }
+    }
+
+    public static Map<MenuList, Integer> makePurchaseMenus(String userInput){
+        Map<MenuList, Integer> purchaseMenus = new EnumMap<>(MenuList.class);
+        for (String splitedComma : userInput.split(COMMA)){
+            purchaseMenus.put(MenuList.valueOf(splitedComma.split(HYPEN)[0]),
+                    Integer.parseInt(splitedComma.split(HYPEN)[1]));
+        }
+        return purchaseMenus;
     }
 }
