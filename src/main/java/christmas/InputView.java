@@ -1,12 +1,24 @@
 package christmas;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.Messages.Main;
+import java.util.Map;
 
 public class InputView {
-    public int readDate() {
-        System.out.println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)");
+    private final Validator validator = new Validator();
+
+    public Integer readDate() {
+        System.out.println(Main.VISIT_MESSAGE);
         String input = Console.readLine();
         return Integer.parseInt(input);
     }
-    // ...
+
+    public Map<FoodMenu.MenuList, Integer> readPurchaseMenu(){
+        String inputMenus;
+        System.out.println(Main.ORDER_MESSAGE);
+        do {
+            inputMenus = Console.readLine();
+        } while(validator.purchaseChecker(inputMenus));
+        return FoodMenu.makePurchaseMenus(inputMenus);
+    }
 }
