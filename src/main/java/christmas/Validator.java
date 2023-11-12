@@ -1,0 +1,55 @@
+package christmas;
+
+import christmas.Messages.ErrorMessage;
+
+public class Validator {
+    private static final String COMMA = ",";
+    private static final String HYPHEN = "-";
+    public boolean purchaseChecker(String userInput){
+        try{
+            regexSplitChecker(userInput, COMMA);
+            for (String splitedComma : userInput.split(COMMA)){
+                regexSplitChecker(splitedComma, HYPHEN);
+                isMenu(splitedComma.split(HYPHEN)[0]);
+                isNumeric(splitedComma.split(HYPHEN)[1]);
+            }
+        } catch (IllegalArgumentException e){
+            System.out.println(ErrorMessage.INVALID_ORDER);
+            return true;
+        }
+        return false;
+    }
+    public void regexSplitChecker(String userInput, String regex){
+        isEmpty(userInput, ErrorMessage.EMPTY_STR_ERROR);
+        isEmpty(regex, ErrorMessage.EMPTY_REGEX_ERROR);
+        if (userInput.startsWith(regex) || userInput.endsWith(regex) || userInput.split(regex).length == 1){
+            System.out.println(ErrorMessage.SPLIT_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.SPLIT_ERROR.getMessage());
+        }
+    }
+
+    public void isMenu(String menuName){
+        try{
+            FoodMenu.MenuList.valueOf(menuName);
+        } catch(IllegalArgumentException e){
+            System.out.println(ErrorMessage.NOT_IN_MENULIST.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_IN_MENULIST.getMessage());
+        }
+    }
+    public void isNumeric(String textNumber){
+        isEmpty(textNumber, ErrorMessage.EMPTY_STR_ERROR);
+        for (int i = 0; i < textNumber.length(); i++){
+            if (textNumber.charAt(i) < '0' || '9' < textNumber.charAt(i)){
+                System.out.println(ErrorMessage.NON_NUMERIC.getMessage());
+                throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC.getMessage());
+            }
+        }
+    }
+
+    public void isEmpty(String input, ErrorMessage errorType){
+        if (input.isEmpty()){
+            System.out.println(errorType.getMessage());
+            throw new IllegalArgumentException(errorType.getMessage());
+        }
+    }
+}
