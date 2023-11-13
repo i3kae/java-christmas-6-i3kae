@@ -21,7 +21,7 @@ public class EventCalculator {
         WEEKDAY, WEEKEND, CHRISTMAS, SPECIAL, PRESENT;
     }
     public enum EventBadge{
-        STAR, TREE, SANTA;
+        NON, STAR, TREE, SANTA;
     }
     private static final int DISCOUNT_WEEK = 2023;
     public List<EventType> calcEventList(Integer visitDate, Integer purchaseAmount){
