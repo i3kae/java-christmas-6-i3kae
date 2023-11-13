@@ -60,7 +60,10 @@ public class OutputView {
     }
     public void printTotalDiscount(Integer totalDiscount){
         System.out.println(TOTAL_DISCOUNT_AMOUNT);
-        System.out.println(MINUS + decFormat.format(totalDiscount) + AMOUNT_MESSAGE);
+        if (totalDiscount != 0){
+            System.out.print(MINUS);
+        }
+        System.out.println(decFormat.format(totalDiscount) + AMOUNT_MESSAGE);
     }
     public void printEstimatedAmount(Integer estimatedAmount){
         System.out.println(ESTIMATED_AMOUNT);
