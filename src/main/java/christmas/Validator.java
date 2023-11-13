@@ -6,13 +6,19 @@ import christmas.Messages.ErrorMessage;
 public class Validator {
     private static final String COMMA = ",";
     private static final String HYPHEN = "-";
+    private static final int MENU = 0;
+    private static final int CNT = 1;
+    private static final int MAX_SIZE = 20;
     public boolean purchaseChecker(String userInput){
+        int menuCnt = 0;
         try{
             regexSplitChecker(userInput, COMMA, 1);
             for (String splitedComma : userInput.split(COMMA)){
                 regexSplitChecker(splitedComma, HYPHEN, 2);
-                isMenu(splitedComma.split(HYPHEN)[0]);
-                isNumeric(splitedComma.split(HYPHEN)[1]);
+                isMenu(splitedComma.split(HYPHEN)[MENU]);
+                isNumeric(splitedComma.split(HYPHEN)[CNT]);
+                menuCnt += Integer.parseInt(splitedComma.split(HYPHEN)[CNT]);
+                isOverSize(menuCnt, MAX_SIZE);
             }
         } catch (IllegalArgumentException e){
             System.out.println(ErrorMessage.INVALID_ORDER.getMessage());
@@ -66,6 +72,12 @@ public class Validator {
         if (inputDate < 1 || 31 < inputDate){
             System.out.println(ErrorMessage.NON_DATE.getMessage());
             throw new IllegalArgumentException(ErrorMessage.NON_DATE.getMessage());
+        }
+    }
+    public void isOverSize(Integer cnt, Integer maxSize){
+        if (cnt > maxSize){
+            System.out.println(ErrorMessage.OVER_SIZE_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.OVER_SIZE_ERROR.getMessage());
         }
     }
 }
