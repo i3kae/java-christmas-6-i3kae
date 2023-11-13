@@ -41,6 +41,15 @@ public class EventCalculator {
         }
         return discountedAmount;
     }
+    public Integer weekendEvent(Map<MenuList, Integer> purchaseMenus){
+        int discountedAmount = 0;
+        for (MenuList menu : purchaseMenus.keySet()){
+            if (menu.getMenuType() == MenuType.MAIN){
+                discountedAmount += purchaseMenus.get(menu) * DISCOUNT_WEEK;
+            }
+        }
+        return discountedAmount;
+    }
 
     public boolean isWeekend(Integer date){
         if ((date - 1) % WEEK == WeekList.SATURDAY.ordinal() || (date - 1) % WEEK == WeekList.SUNDAY.ordinal()){
