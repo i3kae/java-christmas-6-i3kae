@@ -47,7 +47,7 @@ public class EventCalculator {
         }
         return appliedEvent;
     }
-    public Integer weekdayEvent(Map<MenuList, Integer> purchaseMenus){
+    public Integer calcWeekdayEvent(Map<MenuList, Integer> purchaseMenus){
         int discountedAmount = 0;
         for (MenuList menu : purchaseMenus.keySet()){
             if (menu.getMenuType() == MenuType.DESSERT){
@@ -56,7 +56,7 @@ public class EventCalculator {
         }
         return discountedAmount;
     }
-    public Integer weekendEvent(Map<MenuList, Integer> purchaseMenus){
+    public Integer calcWeekendEvent(Map<MenuList, Integer> purchaseMenus){
         int discountedAmount = 0;
         for (MenuList menu : purchaseMenus.keySet()){
             if (menu.getMenuType() == MenuType.MAIN){
@@ -65,13 +65,13 @@ public class EventCalculator {
         }
         return discountedAmount;
     }
-    public Integer christmasEvent(Integer visitDate){
+    public Integer calcChristmasEvent(Integer visitDate){
         if (isChristmasDDay(visitDate)) {
             return CHRISTMAS_DEFAULT_DISCOUNT + CHRISTMAS_ADDITIONAL_DISCOUNT * (visitDate - 1);
         }
         return 0;
     }
-    public Integer specialEvent(Integer visitDate){
+    public Integer calcSpecialEvent(Integer visitDate){
         if (isSpecialDay(visitDate)){
             return 1000;
         }
