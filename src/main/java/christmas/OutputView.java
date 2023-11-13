@@ -9,8 +9,7 @@ public class OutputView {
     private static final String THREE_NUMBER_FORMAT="###,###";
     private static final DecimalFormat decFormat = new DecimalFormat(THREE_NUMBER_FORMAT);
     public void printWelcome(){
-        System.out.println(Main.WELCOME_MESSAGE);
-        System.out.println(Main.WELCOME_MESSAGE);
+        System.out.println(Main.WELCOME_MESSAGE.getMessage());
     }
     public void printTotalPurchaseAmount(Integer amount){
         System.out.println(TOTAL_PURCHASE_AMOUNT);
