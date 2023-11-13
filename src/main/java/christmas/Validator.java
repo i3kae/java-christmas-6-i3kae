@@ -27,7 +27,6 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.SPLIT_ERROR.getMessage());
         }
     }
-
     public void isMenu(String menuName){
         try{
             FoodMenu.MenuList.valueOf(menuName);
@@ -45,11 +44,25 @@ public class Validator {
             }
         }
     }
-
     public void isEmpty(String input, ErrorMessage errorType){
         if (input.isEmpty()){
             System.out.println(errorType.getMessage());
             throw new IllegalArgumentException(errorType.getMessage());
+        }
+    }
+    public boolean visitDateChecker(String input){
+        try {
+            isNumeric(input);
+            isDate(Integer.parseInt(input));
+        } catch (IllegalArgumentException e){
+            return true;
+        }
+        return false;
+    }
+    public void isDate(Integer inputDate){
+        if (inputDate < 1 || 31 < inputDate){
+            System.out.println(ErrorMessage.NON_DATE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NON_DATE.getMessage());
         }
     }
 }
