@@ -29,9 +29,6 @@ public class OutputView {
             System.out.printf(MENU_AND_COUNT + "%n", ordered.getName(), purchaseMenus.get(ordered));
         }
     }
-    public void printTotalAmount(Integer totalAmount){
-
-    }
     public void printPresentEvent(Customer customer){
 
     }
