@@ -2,7 +2,6 @@ package christmas;
 
 import christmas.EventCalculator.EventType;
 import christmas.FoodMenu.MenuList;
-import java.util.List;
 import java.util.Map;
 
 public class Customer{
@@ -22,8 +21,8 @@ public class Customer{
         }
         return calcResult;
     }
-    public List<EventType> calcAppliedEvent(){
-        return eventCalculator.calcEventList(visitDate, calcPurchaseAmount());
+    public Map<EventType, Integer> calcAppliedEvent(){
+        return eventCalculator.calcEventList(visitDate, calcPurchaseAmount(), purchaseMenus);
     }
     public Integer calcTotalDiscountedAmount(){
         return eventCalculator.calcTotalDiscount(visitDate, purchaseMenus, calcPurchaseAmount());

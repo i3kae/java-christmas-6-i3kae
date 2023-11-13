@@ -2,8 +2,7 @@ package christmas;
 
 import christmas.FoodMenu.MenuList;
 import christmas.FoodMenu.MenuType;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.EnumMap;
 import java.util.Map;
 
 public class EventCalculator {
@@ -19,32 +18,45 @@ public class EventCalculator {
         FRIDAY, SATURDAY, SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY;
     }
     public enum EventType{
-        WEEKDAY, WEEKEND, CHRISTMAS, SPECIAL, PRESENT;
+        WEEKDAY("평일 할인"),
+        WEEKEND("주말 할인"),
+        CHRISTMAS("크리스마스 디데이 할인"),
+        SPECIAL("특별 할인"),
+        PRESENT("증정 이벤트");
+
+        private final String event;
+        EventType(String event){
+            this.event = event;
+        }
+        public String getEvent(){
+            return event;
+        }
     }
     public enum EventBadge{
         NON, STAR, TREE, SANTA;
     }
     private static final int DISCOUNT_WEEK = 2023;
-    public List<EventType> calcEventList(Integer visitDate, Integer purchaseAmount){
-        List<EventType> appliedEvent = calcSaleEvent(visitDate);
+    public Map<EventType, Integer> calcEventList(Integer visitDate, Integer purchaseAmount,
+                                                 Map<MenuList, Integer> purchaseMenus){
+        Map<EventType, Integer> appliedEvent = calcSaleEvent(visitDate, purchaseMenus);
         if (isPresentEvent(purchaseAmount)){
-            appliedEvent.add(EventType.PRESENT);
+            appliedEvent.put(EventType.PRESENT, calcPresentEvent(purchaseAmount));
         }
         return appliedEvent;
     }
-    public List<EventType> calcSaleEvent(Integer visitDate){
-        List<EventType> appliedEvent = new ArrayList<>();
+    public Map<EventType, Integer> calcSaleEvent(Integer visitDate, Map<MenuList, Integer> purchaseMenus){
+        Map<EventType, Integer> appliedEvent = new EnumMap<>(EventType.class);
         if (isChristmasDDay(visitDate)){
-            appliedEvent.add(EventType.CHRISTMAS);
+            appliedEvent.put(EventType.CHRISTMAS, calcChristmasEvent(visitDate));
         }
         if (isWeekend(visitDate)){
-            appliedEvent.add(EventType.WEEKEND);
+            appliedEvent.put(EventType.WEEKEND, calcWeekendEvent(purchaseMenus));
         }
         if (!isWeekend(visitDate)){
-            appliedEvent.add(EventType.WEEKDAY);
+            appliedEvent.put(EventType.WEEKDAY, calcWeekdayEvent(purchaseMenus));
         }
         if (isSpecialDay(visitDate)){
-            appliedEvent.add(EventType.SPECIAL);
+            appliedEvent.put(EventType.SPECIAL, calcSpecialEvent(visitDate));
         }
         return appliedEvent;
     }
