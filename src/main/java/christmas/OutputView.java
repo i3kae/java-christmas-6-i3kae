@@ -14,6 +14,7 @@ public class OutputView {
     private static final String APPLIED_EVENTS = "<혜택 내역>";
     private static final String TOTAL_DISCOUNT_AMOUNT = "<총혜택 금액>";
     private static final String ESTIMATED_AMOUNT = "<할인 후 예상 결제 금액>";
+    private static final String EVENT_BADGE_MENU = "<12월 이벤트 배지>";
     private static final String MENU_AND_COUNT = "%s %d개";
     private static final String EVENT_AND_DISCOUNT = "%s: -";
     private static final String AMOUNT_MESSAGE="원";
@@ -66,6 +67,7 @@ public class OutputView {
         System.out.println(decFormat.format(estimatedAmount) + AMOUNT_MESSAGE);
     }
     public void printEventBadge(EventBadge eventBadge){
-
+        System.out.println(EVENT_BADGE_MENU);
+        System.out.println(eventBadge.getEventBadge());
     }
 }
