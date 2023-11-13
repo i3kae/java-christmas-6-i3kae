@@ -60,6 +60,12 @@ public class EventCalculator {
         }
         return 0;
     }
+    public Integer specialEvent(Integer visitDate){
+        if (isSpecialDay(visitDate)){
+            return 1000;
+        }
+        return 0;
+    }
     public boolean isWeekend(Integer date){
         if ((date - 1) % WEEK == WeekList.SATURDAY.ordinal() || (date - 1) % WEEK == WeekList.SUNDAY.ordinal()){
             return true;
