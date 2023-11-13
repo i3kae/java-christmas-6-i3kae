@@ -20,7 +20,7 @@ public class EventCalculator {
         WEEKDAY, WEEKEND, CHRISTMAS, SPECIAL, PRESENT;
     }
     private static final int DISCOUNT_WEEK = 2023;
-    public List<EventType> calcSaleEventList(Integer visitDay){
+    public List<EventType> calcEventList(Integer visitDay){
         List<EventType> appliedEvent = new ArrayList<>();
         if (isChristmasDDay(visitDay)){
             appliedEvent.add(EventType.CHRISTMAS);
