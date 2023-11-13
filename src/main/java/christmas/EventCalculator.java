@@ -19,19 +19,22 @@ public class EventCalculator {
     public enum EventType{
         WEEKDAY, WEEKEND, CHRISTMAS, SPECIAL, PRESENT;
     }
+    public enum EventBadge{
+        STAR, TREE, SANTA;
+    }
     private static final int DISCOUNT_WEEK = 2023;
-    public List<EventType> calcEventList(Integer visitDay){
+    public List<EventType> calcEventList(Integer visitDate){
         List<EventType> appliedEvent = new ArrayList<>();
-        if (isChristmasDDay(visitDay)){
+        if (isChristmasDDay(visitDate)){
             appliedEvent.add(EventType.CHRISTMAS);
         }
-        if (isWeekend(visitDay)){
+        if (isWeekend(visitDate)){
             appliedEvent.add(EventType.WEEKEND);
         }
-        if (!isWeekend(visitDay)){
+        if (!isWeekend(visitDate)){
             appliedEvent.add(EventType.WEEKDAY);
         }
-        if (isSpecialDay(visitDay)){
+        if (isSpecialDay(visitDate)){
             appliedEvent.add(EventType.SPECIAL);
         }
         return appliedEvent;
