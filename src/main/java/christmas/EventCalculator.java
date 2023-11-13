@@ -13,6 +13,7 @@ public class EventCalculator {
     private static final int CHRISTMAS_ADDITIONAL_DISCOUNT = 100;
     private static final int FIRST_DAY = 1;
     private static final int PRESENT_EVENT_AMOUNT = 120000;
+    private static final int SPECIAL_DISCOUNT = 1000;
 
     public enum WeekList{
         FRIDAY, SATURDAY, SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY;
@@ -73,9 +74,28 @@ public class EventCalculator {
     }
     public Integer calcSpecialEvent(Integer visitDate){
         if (isSpecialDay(visitDate)){
-            return 1000;
+            return SPECIAL_DISCOUNT;
         }
         return 0;
+    }
+    public Integer calcPresentEvent(Integer purchaseAmount){
+        if (isPresentEvent(purchaseAmount)){
+            return MenuList.CHAMPAGNE.getAmount();
+        }
+        return 0;
+    }
+    public Integer calcTotalDiscount(Integer visitDate, Map<MenuList, Integer> purchaseMenus, Integer purchaseAmount){
+        int discountAmount = 0;
+        discountAmount += calcChristmasEvent(visitDate);
+        if (isWeekend(visitDate)){
+            discountAmount += calcWeekendEvent(purchaseMenus);
+        }
+        if (!isWeekend(visitDate)){
+            discountAmount += calcWeekdayEvent(purchaseMenus);
+        }
+        discountAmount += calcSpecialEvent(visitDate);
+        discountAmount += calcPresentEvent(purchaseAmount);
+        return discountAmount;
     }
     public boolean isWeekend(Integer date){
         if ((date - 1) % WEEK == WeekList.SATURDAY.ordinal() || (date - 1) % WEEK == WeekList.SUNDAY.ordinal()){
