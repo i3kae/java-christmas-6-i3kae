@@ -49,10 +49,10 @@ public class EventCalculator {
         if (isChristmasDDay(visitDate)){
             appliedEvent.put(EventType.CHRISTMAS, calcChristmasEvent(visitDate));
         }
-        if (isWeekend(visitDate)){
+        if (isWeekend(visitDate, purchaseMenus)){
             appliedEvent.put(EventType.WEEKEND, calcWeekendEvent(purchaseMenus));
         }
-        if (!isWeekend(visitDate)){
+        if (isWeekday(visitDate, purchaseMenus)){
             appliedEvent.put(EventType.WEEKDAY, calcWeekdayEvent(purchaseMenus));
         }
         if (isSpecialDay(visitDate)){
@@ -99,19 +99,35 @@ public class EventCalculator {
     public Integer calcTotalDiscount(Integer visitDate, Map<MenuList, Integer> purchaseMenus, Integer purchaseAmount){
         int discountAmount = 0;
         discountAmount += calcChristmasEvent(visitDate);
-        if (isWeekend(visitDate)){
+        if (isWeekend(visitDate, purchaseMenus)){
             discountAmount += calcWeekendEvent(purchaseMenus);
         }
-        if (!isWeekend(visitDate)){
+        if (isWeekday(visitDate, purchaseMenus)){
             discountAmount += calcWeekdayEvent(purchaseMenus);
         }
         discountAmount += calcSpecialEvent(visitDate);
         discountAmount += calcPresentEvent(purchaseAmount);
         return discountAmount;
     }
-    public boolean isWeekend(Integer date){
+    public boolean isWeekend(Integer date, Map<MenuList, Integer> purchaseMenus){
+        if (!((date - 1) % WEEK == WeekList.SATURDAY.ordinal() || (date - 1) % WEEK == WeekList.SUNDAY.ordinal())){
+            return false;
+        }
+        for (MenuList menu : purchaseMenus.keySet()){
+            if (menu.getMenuType() == MenuType.MAIN){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean isWeekday(Integer date, Map<MenuList, Integer> purchaseMenus){
         if ((date - 1) % WEEK == WeekList.SATURDAY.ordinal() || (date - 1) % WEEK == WeekList.SUNDAY.ordinal()){
-            return true;
+            return false;
+        }
+        for (MenuList menu : purchaseMenus.keySet()){
+            if (menu.getMenuType() == MenuType.DESSERT){
+                return true;
+            }
         }
         return false;
     }
