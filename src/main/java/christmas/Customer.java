@@ -1,5 +1,6 @@
 package christmas;
 
+import christmas.EventCalculator.EventBadge;
 import christmas.EventCalculator.EventType;
 import christmas.FoodMenu.MenuList;
 import java.util.Map;
@@ -26,6 +27,9 @@ public class Customer{
     }
     public Integer calcTotalDiscountedAmount(){
         return eventCalculator.calcTotalDiscount(visitDate, purchaseMenus, calcPurchaseAmount());
+    }
+    public EventBadge calcEventBadge(){
+        return eventCalculator.calcEventBadge(calcTotalDiscountedAmount());
     }
     public Integer getVisitDate(){
         return visitDate;
