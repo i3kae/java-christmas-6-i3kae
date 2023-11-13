@@ -9,6 +9,8 @@ import java.util.Map;
 public class EventCalculator {
     private static final int WEEK = 7;
     private static final int CHRISTMAS = 25;
+    private static final int CHRISTMAS_DEFAULT_DISCOUNT = 1000;
+    private static final int CHRISTMAS_ADDITIONAL_DISCOUNT = 100;
     public enum WeekList{
         FRIDAY, SATURDAY, SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY;
     }
@@ -50,7 +52,9 @@ public class EventCalculator {
         }
         return discountedAmount;
     }
-
+    public Integer christmasEvent(Integer visitDate){
+        return CHRISTMAS_DEFAULT_DISCOUNT + CHRISTMAS_ADDITIONAL_DISCOUNT * (visitDate - 1);
+    }
     public boolean isWeekend(Integer date){
         if ((date - 1) % WEEK == WeekList.SATURDAY.ordinal() || (date - 1) % WEEK == WeekList.SUNDAY.ordinal()){
             return true;
