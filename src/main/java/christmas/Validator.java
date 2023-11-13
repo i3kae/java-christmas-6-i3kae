@@ -8,9 +8,9 @@ public class Validator {
     private static final String HYPHEN = "-";
     public boolean purchaseChecker(String userInput){
         try{
-            regexSplitChecker(userInput, COMMA);
+            regexSplitChecker(userInput, COMMA, 1);
             for (String splitedComma : userInput.split(COMMA)){
-                regexSplitChecker(splitedComma, HYPHEN);
+                regexSplitChecker(splitedComma, HYPHEN, 2);
                 isMenu(splitedComma.split(HYPHEN)[0]);
                 isNumeric(splitedComma.split(HYPHEN)[1]);
             }
@@ -20,10 +20,10 @@ public class Validator {
         }
         return false;
     }
-    public void regexSplitChecker(String userInput, String regex){
+    public void regexSplitChecker(String userInput, String regex, Integer minSepCnt){
         isEmpty(userInput, ErrorMessage.EMPTY_STR_ERROR);
         isEmpty(regex, ErrorMessage.EMPTY_REGEX_ERROR);
-        if (userInput.startsWith(regex) || userInput.endsWith(regex)){
+        if (userInput.startsWith(regex) || userInput.endsWith(regex) || userInput.split(regex).length < minSepCnt){
             System.out.println(ErrorMessage.SPLIT_ERROR.getMessage());
             throw new IllegalArgumentException(ErrorMessage.SPLIT_ERROR.getMessage());
         }
