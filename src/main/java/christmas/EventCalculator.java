@@ -11,6 +11,8 @@ public class EventCalculator {
     private static final int CHRISTMAS = 25;
     private static final int CHRISTMAS_DEFAULT_DISCOUNT = 1000;
     private static final int CHRISTMAS_ADDITIONAL_DISCOUNT = 100;
+    private static final int FIRST_DAY = 1;
+
     public enum WeekList{
         FRIDAY, SATURDAY, SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY;
     }
@@ -20,7 +22,7 @@ public class EventCalculator {
     private static final int DISCOUNT_WEEK = 2023;
     public List<EventType> calcSaleEventList(Integer visitDay){
         List<EventType> appliedEvent = new ArrayList<>();
-        if (1 <= visitDay && visitDay <= 25){
+        if (isChristmasDDay(visitDay)){
             appliedEvent.add(EventType.CHRISTMAS);
         }
         if (isWeekend(visitDay)){
@@ -53,7 +55,10 @@ public class EventCalculator {
         return discountedAmount;
     }
     public Integer christmasEvent(Integer visitDate){
-        return CHRISTMAS_DEFAULT_DISCOUNT + CHRISTMAS_ADDITIONAL_DISCOUNT * (visitDate - 1);
+        if (isChristmasDDay(visitDate)) {
+            return CHRISTMAS_DEFAULT_DISCOUNT + CHRISTMAS_ADDITIONAL_DISCOUNT * (visitDate - 1);
+        }
+        return 0;
     }
     public boolean isWeekend(Integer date){
         if ((date - 1) % WEEK == WeekList.SATURDAY.ordinal() || (date - 1) % WEEK == WeekList.SUNDAY.ordinal()){
@@ -63,6 +68,12 @@ public class EventCalculator {
     }
     public boolean isSpecialDay(Integer date){
         if ((date - 1) % WEEK == WeekList.SUNDAY.ordinal() || date == CHRISTMAS){
+            return true;
+        }
+        return false;
+    }
+    public boolean isChristmasDDay(Integer date){
+        if (FIRST_DAY <= date && date <= CHRISTMAS){
             return true;
         }
         return false;
