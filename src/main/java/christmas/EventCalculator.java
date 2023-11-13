@@ -13,10 +13,8 @@ public class EventCalculator {
     private static final int FIRST_DAY = 1;
     private static final int PRESENT_EVENT_AMOUNT = 120000;
     private static final int SPECIAL_DISCOUNT = 1000;
-
-    public enum WeekList{
-        FRIDAY, SATURDAY, SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY;
-    }
+    private static final int SATURDAY = 1;
+    private static final int SUNDAY = 2;
     public enum EventType{
         WEEKDAY("평일 할인"),
         WEEKEND("주말 할인"),
@@ -132,7 +130,7 @@ public class EventCalculator {
         return EventBadge.NON;
     }
     public boolean isWeekend(Integer date, Map<MenuList, Integer> purchaseMenus){
-        if (!((date - 1) % WEEK == WeekList.SATURDAY.ordinal() || (date - 1) % WEEK == WeekList.SUNDAY.ordinal())){
+        if (!((date - 1) % WEEK == SATURDAY || (date - 1) % WEEK == SUNDAY)){
             return false;
         }
         for (MenuList menu : purchaseMenus.keySet()){
@@ -143,7 +141,7 @@ public class EventCalculator {
         return false;
     }
     public boolean isWeekday(Integer date, Map<MenuList, Integer> purchaseMenus){
-        if ((date - 1) % WEEK == WeekList.SATURDAY.ordinal() || (date - 1) % WEEK == WeekList.SUNDAY.ordinal()){
+        if ((date - 1) % WEEK == SATURDAY || (date - 1) % WEEK == SUNDAY){
             return false;
         }
         for (MenuList menu : purchaseMenus.keySet()){
@@ -154,7 +152,7 @@ public class EventCalculator {
         return false;
     }
     public boolean isSpecialDay(Integer date){
-        if ((date - 1) % WEEK == WeekList.SUNDAY.ordinal() || date == CHRISTMAS){
+        if ((date - 1) % WEEK == SUNDAY || date == CHRISTMAS){
             return true;
         }
         return false;
