@@ -54,7 +54,7 @@ public class OutputView {
             return;
         }
         for (EventType event : appliedEvents.keySet()){
-            System.out.printf(EVENT_AND_DISCOUNT + decFormat.format(appliedEvents.get(event) + AMOUNT_MESSAGE),
+            System.out.printf(EVENT_AND_DISCOUNT + decFormat.format(appliedEvents.get(event)) + AMOUNT_MESSAGE,
                     event.getEvent());
         }
     }
