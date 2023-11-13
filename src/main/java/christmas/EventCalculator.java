@@ -33,7 +33,17 @@ public class EventCalculator {
         }
     }
     public enum EventBadge{
-        NON, STAR, TREE, SANTA;
+        NON("없음"),
+        STAR("별"),
+        TREE("트리"),
+        SANTA("산타");
+        private final String eventBadge;
+        EventBadge(String eventBadge){
+            this.eventBadge = eventBadge;
+        }
+        public String getEventBadge(){
+            return eventBadge;
+        }
     }
     private static final int DISCOUNT_WEEK = 2023;
     public Map<EventType, Integer> calcEventList(Integer visitDate, Integer purchaseAmount,
@@ -108,6 +118,18 @@ public class EventCalculator {
         discountAmount += calcSpecialEvent(visitDate);
         discountAmount += calcPresentEvent(purchaseAmount);
         return discountAmount;
+    }
+    public EventBadge calcEventBadge(Integer totalDiscount){
+        if (totalDiscount >= 20000){
+            return EventBadge.SANTA;
+        }
+        if (totalDiscount >= 10000){
+            return EventBadge.TREE;
+        }
+        if (totalDiscount >= 5000){
+            return EventBadge.STAR;
+        }
+        return EventBadge.NON;
     }
     public boolean isWeekend(Integer date, Map<MenuList, Integer> purchaseMenus){
         if (!((date - 1) % WEEK == WeekList.SATURDAY.ordinal() || (date - 1) % WEEK == WeekList.SUNDAY.ordinal())){
