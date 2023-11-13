@@ -6,15 +6,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import christmas.Messages.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class ValidatorTest {
     private final Validator validator = new Validator();
     @Test
     @DisplayName("방문 날짜 검증 - 정상적인 문자열인 경우")
-    void normalVisitDateTest(){
-        assertThat(validator.visitDateChecker("1")).isEqualTo(false);
-        assertThat(validator.visitDateChecker("15")).isEqualTo(false);
-        assertThat(validator.visitDateChecker("31")).isEqualTo(false);
+    @ValueSource(strings = {"1", "15", "31"})
+    void normalVisitDateTest(String input){
+        assertThat(validator.visitDateChecker(input)).isEqualTo(false);
     }
     @Test
     @DisplayName("방문 날짜 검증 - 비어있는 문자열인 경우")
@@ -23,16 +23,15 @@ public class ValidatorTest {
     }
     @Test
     @DisplayName("방문 날짜 검증 - 숫자로 이루어진 문자열이 아닌 경우")
-    void nonNumericVisitDateTest(){
-        assertThat(validator.visitDateChecker("  1")).isEqualTo(true);
-        assertThat(validator.visitDateChecker("-1")).isEqualTo(true);
-        assertThat(validator.visitDateChecker("우테코")).isEqualTo(true);
+    @ValueSource(strings = {"  1", "-1", "우테코"})
+    void nonNumericVisitDateTest(String input){
+        assertThat(validator.visitDateChecker(input)).isEqualTo(true);
     }
     @Test
     @DisplayName("방문 날짜 검증 - 1 ~ 31 사이의 숫자가 아닌 경우")
-    void notInVisitDateTest(){
-        assertThat(validator.visitDateChecker("0")).isEqualTo(true);
-        assertThat(validator.visitDateChecker("50")).isEqualTo(true);
+    @ValueSource(strings = {"0", "50"})
+    void notInVisitDateTest(String input){
+        assertThat(validator.visitDateChecker(input)).isEqualTo(true);
     }
     @Test
     @DisplayName("세부 검증 함수 테스트 - 비어있는 문자열 검증 함수")
@@ -42,12 +41,9 @@ public class ValidatorTest {
     }
     @Test
     @DisplayName("세부 검증 함수 테스트 - 숫자로 이루어진 문자열 검증 함수")
-    void isNumericTest(){
-        assertThatThrownBy(() -> validator.isNumeric("11!"))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> validator.isNumeric(" 3"))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> validator.isNumeric("TEST"))
+    @ValueSource(strings = {"11!", " 3", "TEST"})
+    void isNumericTest(String input){
+        assertThatThrownBy(() -> validator.isNumeric(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
