@@ -84,4 +84,9 @@ public class ValidatorTest {
     void overSizeInputPurchaseMenus(String input){
         assertThat(validator.purchaseChecker(input)).isEqualTo(true);
     }
+    @Test
+    @DisplayName("구매 목록 검증 | 음료 메뉴만 구매한 경우")
+    void onlyDrinkOrder(){
+        assertThat(validator.purchaseChecker("제로콜라-5")).isEqualTo(true);
+    }
 }
