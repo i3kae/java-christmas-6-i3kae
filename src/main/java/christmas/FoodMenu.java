@@ -1,5 +1,7 @@
 package christmas;
 
+import christmas.Messages.ErrorMessage;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -42,13 +44,22 @@ public class FoodMenu {
         public MenuType getMenuType(){
             return menuType;
         }
+
+        public static MenuList findMenu(String menu) {
+            return Arrays.stream(MenuList.values())
+                    .filter(operator -> operator.menuName.equals(menu))
+                    .findAny()
+                    .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_IN_MENULIST.getMessage()));
+        }
     }
 
     public static Map<MenuList, Integer> makePurchaseMenus(String userInput){
         Map<MenuList, Integer> purchaseMenus = new EnumMap<>(MenuList.class);
         for (String splitedComma : userInput.split(COMMA)){
-            purchaseMenus.put(MenuList.valueOf(splitedComma.split(HYPEN)[0]),
-                    Integer.parseInt(splitedComma.split(HYPEN)[1]));
+            for (MenuList menu : MenuList.values()){
+                purchaseMenus.put(MenuList.findMenu(splitedComma.split(HYPEN)[0]),
+                        Integer.parseInt(splitedComma.split(HYPEN)[1]));
+            }
         }
         return purchaseMenus;
     }

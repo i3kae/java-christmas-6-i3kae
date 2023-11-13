@@ -30,13 +30,12 @@ public class Validator {
     }
     public void isMenu(String menuName){
         isEmpty(menuName, ErrorMessage.EMPTY_STR_ERROR);
-        for (MenuList menu : MenuList.values()){
-            if (menu.getName().equals(menuName)){
-                return;
-            }
+        try {
+            MenuList.findMenu(menuName);
+        } catch (IllegalArgumentException e) {
+            System.out.println(ErrorMessage.NOT_IN_MENULIST.getMessage());
+            throw e;
         }
-        System.out.println(ErrorMessage.NOT_IN_MENULIST.getMessage());
-        throw new IllegalArgumentException(ErrorMessage.NOT_IN_MENULIST.getMessage());
     }
     public void isNumeric(String textNumber){
         isEmpty(textNumber, ErrorMessage.EMPTY_STR_ERROR);
