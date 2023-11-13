@@ -14,7 +14,7 @@ public class Validator {
                 isNumeric(splitedComma.split(HYPHEN)[1]);
             }
         } catch (IllegalArgumentException e){
-            System.out.println(ErrorMessage.INVALID_ORDER);
+            System.out.println(ErrorMessage.INVALID_ORDER.getMessage());
             return true;
         }
         return false;
@@ -55,6 +55,7 @@ public class Validator {
             isNumeric(input);
             isDate(Integer.parseInt(input));
         } catch (IllegalArgumentException e){
+            System.out.println(ErrorMessage.NON_DATE.getMessage());
             return true;
         }
         return false;
