@@ -43,8 +43,12 @@ public class OutputView {
         System.out.println(NON_APPLIED);
 
     }
-    public void printAppliedEvent(Customer customer){
-
+    public void printAppliedEvent(Map<EventType, Integer> appliedEvents){
+        System.out.println(APPLIED_EVENTS);
+        for (EventType event : appliedEvents.keySet()){
+            System.out.printf(EVENT_AND_DISCOUNT + decFormat.format(appliedEvents.get(event) + AMOUNT_MESSAGE),
+                    event.getEvent());
+        }
     }
     public void printTotalDiscount(Integer totalDiscount){
 
