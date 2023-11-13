@@ -23,7 +23,7 @@ public class Validator {
     public void regexSplitChecker(String userInput, String regex){
         isEmpty(userInput, ErrorMessage.EMPTY_STR_ERROR);
         isEmpty(regex, ErrorMessage.EMPTY_REGEX_ERROR);
-        if (userInput.startsWith(regex) || userInput.endsWith(regex) || userInput.split(regex).length == 1){
+        if (userInput.startsWith(regex) || userInput.endsWith(regex)){
             System.out.println(ErrorMessage.SPLIT_ERROR.getMessage());
             throw new IllegalArgumentException(ErrorMessage.SPLIT_ERROR.getMessage());
         }
