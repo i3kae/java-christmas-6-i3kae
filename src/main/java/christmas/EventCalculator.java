@@ -12,23 +12,23 @@ public class EventCalculator {
     public enum WeekList{
         FRIDAY, SATURDAY, SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY;
     }
-    public enum EventList{
+    public enum EventType{
         WEEKDAY, WEEKEND, CHRISTMAS, SPECIAL, PRESENT;
     }
     private static final int DISCOUNT_WEEK = 2023;
-    public List<EventList> calcSaleEventList(Integer visitDay){
-        List<EventList> appliedEvent = new ArrayList<>();
+    public List<EventType> calcSaleEventList(Integer visitDay){
+        List<EventType> appliedEvent = new ArrayList<>();
         if (1 <= visitDay && visitDay <= 25){
-            appliedEvent.add(EventList.CHRISTMAS);
+            appliedEvent.add(EventType.CHRISTMAS);
         }
         if (isWeekend(visitDay)){
-            appliedEvent.add(EventList.WEEKEND);
+            appliedEvent.add(EventType.WEEKEND);
         }
         if (!isWeekend(visitDay)){
-            appliedEvent.add(EventList.WEEKDAY);
+            appliedEvent.add(EventType.WEEKDAY);
         }
         if (isSpecialDay(visitDay)){
-            appliedEvent.add(EventList.SPECIAL);
+            appliedEvent.add(EventType.SPECIAL);
         }
         return appliedEvent;
     }
