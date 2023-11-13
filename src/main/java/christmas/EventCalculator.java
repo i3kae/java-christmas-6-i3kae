@@ -1,0 +1,57 @@
+package christmas;
+
+import christmas.FoodMenu.MenuList;
+import christmas.FoodMenu.MenuType;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public class EventCalculator {
+    private static final int WEEK = 7;
+    private static final int CHRISTMAS = 25;
+    public enum WeekList{
+        FRIDAY, SATURDAY, SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY;
+    }
+    public enum EventList{
+        WEEKDAY, WEEKEND, CHRISTMAS, SPECIAL, PRESENT;
+    }
+    private static final int DISCOUNT_WEEK = 2023;
+    public List<EventList> calcSaleEventList(Integer visitDay){
+        List<EventList> appliedEvent = new ArrayList<>();
+        if (1 <= visitDay && visitDay <= 25){
+            appliedEvent.add(EventList.CHRISTMAS);
+        }
+        if (isWeekend(visitDay)){
+            appliedEvent.add(EventList.WEEKEND);
+        }
+        if (!isWeekend(visitDay)){
+            appliedEvent.add(EventList.WEEKDAY);
+        }
+        if (isSpecialDay(visitDay)){
+            appliedEvent.add(EventList.SPECIAL);
+        }
+        return appliedEvent;
+    }
+    public Integer weekdayEvent(Map<MenuList, Integer> purchaseMenus){
+        int discountedAmount = 0;
+        for (MenuList menu : purchaseMenus.keySet()){
+            if (menu.getMenuType() == MenuType.DESSERT){
+                discountedAmount += purchaseMenus.get(menu) * DISCOUNT_WEEK;
+            }
+        }
+        return discountedAmount;
+    }
+
+    public boolean isWeekend(Integer date){
+        if ((date - 1) % WEEK == WeekList.SATURDAY.ordinal() || (date - 1) % WEEK == WeekList.SUNDAY.ordinal()){
+            return true;
+        }
+        return false;
+    }
+    public boolean isSpecialDay(Integer date){
+        if ((date - 1) % WEEK == WeekList.SUNDAY.ordinal() || date == CHRISTMAS){
+            return true;
+        }
+        return false;
+    }
+}
