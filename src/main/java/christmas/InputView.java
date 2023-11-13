@@ -9,8 +9,11 @@ public class InputView {
 
     public Integer readDate() {
         System.out.println(Main.VISIT_MESSAGE);
-        String input = Console.readLine();
-        return Integer.parseInt(input);
+        String inputDate;
+        do {
+            inputDate = Console.readLine();
+        } while(validator.visitDateChecker(inputDate));
+        return Integer.parseInt(inputDate);
     }
 
     public Map<FoodMenu.MenuList, Integer> readPurchaseMenu(){
