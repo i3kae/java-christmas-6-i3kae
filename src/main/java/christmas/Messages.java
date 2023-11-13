@@ -21,7 +21,7 @@ public class Messages {
         EMPTY_REGEX_ERROR("[ERROR] 비어있는 구분자가 들어왔습니다."),
         NON_NUMERIC("[ERROR] 숫자가 아닌 값이 들어왔습니다."),
         NOT_IN_MENULIST("[ERROR] 메뉴 목록에 포함되어 있지 않은 메뉴입니다."),
-        NON_DATE("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해주세요."),
+        NON_DATE("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요."),
         INVALID_ORDER("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         private final String message;
         ErrorMessage(String message){
