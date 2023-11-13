@@ -56,10 +56,8 @@ public class FoodMenu {
     public static Map<MenuList, Integer> makePurchaseMenus(String userInput){
         Map<MenuList, Integer> purchaseMenus = new EnumMap<>(MenuList.class);
         for (String splitedComma : userInput.split(COMMA)){
-            for (MenuList menu : MenuList.values()){
-                purchaseMenus.put(MenuList.findMenu(splitedComma.split(HYPEN)[0]),
-                        Integer.parseInt(splitedComma.split(HYPEN)[1]));
-            }
+            purchaseMenus.put(MenuList.findMenu(splitedComma.split(HYPEN)[0]),
+                    Integer.parseInt(splitedComma.split(HYPEN)[1]));
         }
         return purchaseMenus;
     }
