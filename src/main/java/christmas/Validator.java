@@ -1,5 +1,6 @@
 package christmas;
 
+import christmas.FoodMenu.MenuList;
 import christmas.Messages.ErrorMessage;
 
 public class Validator {
@@ -28,12 +29,14 @@ public class Validator {
         }
     }
     public void isMenu(String menuName){
-        try{
-            FoodMenu.MenuList.valueOf(menuName);
-        } catch(IllegalArgumentException e){
-            System.out.println(ErrorMessage.NOT_IN_MENULIST.getMessage());
-            throw new IllegalArgumentException(ErrorMessage.NOT_IN_MENULIST.getMessage());
+        isEmpty(menuName, ErrorMessage.EMPTY_STR_ERROR);
+        for (MenuList menu : MenuList.values()){
+            if (menu.getName().equals(menuName)){
+                return;
+            }
         }
+        System.out.println(ErrorMessage.NOT_IN_MENULIST.getMessage());
+        throw new IllegalArgumentException(ErrorMessage.NOT_IN_MENULIST.getMessage());
     }
     public void isNumeric(String textNumber){
         isEmpty(textNumber, ErrorMessage.EMPTY_STR_ERROR);
