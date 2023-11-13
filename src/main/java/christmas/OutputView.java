@@ -48,6 +48,10 @@ public class OutputView {
     }
     public void printAppliedEvent(Map<EventType, Integer> appliedEvents){
         System.out.println(APPLIED_EVENTS);
+        if (appliedEvents.isEmpty()){
+            System.out.println(NON_APPLIED);
+            return;
+        }
         for (EventType event : appliedEvents.keySet()){
             System.out.printf(EVENT_AND_DISCOUNT + decFormat.format(appliedEvents.get(event) + AMOUNT_MESSAGE),
                     event.getEvent());
