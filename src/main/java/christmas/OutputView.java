@@ -29,16 +29,23 @@ public class OutputView {
         System.out.println(TOTAL_PURCHASE_AMOUNT);
         System.out.println(decFormat.format(amount) + AMOUNT_MESSAGE);
     }
-    public void printEventPreview(Integer visitDate){
-        System.out.printf(Main.EVENT_BENEFIT_PREVIEW.getMessage() + "%n", visitDate);
+    public void printEventPreview(Customer customer){
+        System.out.printf(Main.EVENT_BENEFIT_PREVIEW.getMessage() + "%n", customer.getVisitDate());
+        printOrderMenus(customer.getPurchaseMenus());
+        printTotalPurchaseAmount(customer.calcPurchaseAmount());
+        printPresentEvent(customer.calcAppliedEvent());
+        printAppliedEvent(customer.calcAppliedEvent());
+        printTotalDiscount(customer.calcTotalDiscountedAmount());
+        printEstimatedAmount(customer.calcPurchaseAmount() - customer.calcTotalDiscountedAmount());
+        printEventBadge(customer.calcEventBadge());
     }
-    public void printOrderMenus(Map<MenuList, Integer> purchaseMenus){
+    private void printOrderMenus(Map<MenuList, Integer> purchaseMenus){
         System.out.println(ORDER_MENU);
         for (MenuList ordered : purchaseMenus.keySet()){
             System.out.printf(MENU_AND_COUNT + "%n", ordered.getName(), purchaseMenus.get(ordered));
         }
     }
-    public void printPresentEvent(Map<EventType, Integer> appliedEvents){
+    private void printPresentEvent(Map<EventType, Integer> appliedEvents){
         System.out.println(PRESENT_MENU);
         if (appliedEvents.containsKey(EventType.PRESENT)){
             System.out.printf(MENU_AND_COUNT + "%n", MenuList.CHAMPAGNE.getName(), 1);
@@ -47,7 +54,7 @@ public class OutputView {
         System.out.println(NON_APPLIED);
 
     }
-    public void printAppliedEvent(Map<EventType, Integer> appliedEvents){
+    private void printAppliedEvent(Map<EventType, Integer> appliedEvents){
         System.out.println(APPLIED_EVENTS);
         if (appliedEvents.isEmpty()){
             System.out.println(NON_APPLIED);
@@ -58,18 +65,18 @@ public class OutputView {
                     event.getEvent());
         }
     }
-    public void printTotalDiscount(Integer totalDiscount){
+    private void printTotalDiscount(Integer totalDiscount){
         System.out.println(TOTAL_DISCOUNT_AMOUNT);
         if (totalDiscount != 0){
             System.out.print(MINUS);
         }
         System.out.println(decFormat.format(totalDiscount) + AMOUNT_MESSAGE);
     }
-    public void printEstimatedAmount(Integer estimatedAmount){
+    private void printEstimatedAmount(Integer estimatedAmount){
         System.out.println(ESTIMATED_AMOUNT);
         System.out.println(decFormat.format(estimatedAmount) + AMOUNT_MESSAGE);
     }
-    public void printEventBadge(EventBadge eventBadge){
+    private void printEventBadge(EventBadge eventBadge){
         System.out.println(EVENT_BADGE_MENU);
         System.out.println(eventBadge.getEventBadge());
     }
