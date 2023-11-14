@@ -11,7 +11,7 @@ public class Validator {
     private static final int MAX_SIZE = 20;
     public boolean purchaseChecker(String userInput){
         int menuCnt = 0;
-        try{
+        try {
             regexSplitChecker(userInput, COMMA, 1);
             for (String splitedComma : userInput.split(COMMA)){
                 regexSplitChecker(splitedComma, HYPHEN, 2);

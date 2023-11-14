@@ -15,6 +15,7 @@ public class EventCalculator {
     private static final int SPECIAL_DISCOUNT = 1000;
     private static final int SATURDAY = 1;
     private static final int SUNDAY = 2;
+    private static final int DISCOUNT_WEEK = 2023;
     public enum EventType{
         WEEKDAY("평일 할인"),
         WEEKEND("주말 할인"),
@@ -43,7 +44,6 @@ public class EventCalculator {
             return eventBadge;
         }
     }
-    private static final int DISCOUNT_WEEK = 2023;
     public Map<EventType, Integer> calcEventList(Integer visitDate, Integer purchaseAmount,
                                                  Map<MenuList, Integer> purchaseMenus){
         Map<EventType, Integer> appliedEvent = calcSaleEvent(visitDate, purchaseMenus);
