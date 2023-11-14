@@ -16,7 +16,7 @@ public class Customer{
     }
 
     public Integer calcPurchaseAmount(){
-        Integer calcResult = 0;
+        int calcResult = 0;
         for (FoodMenu.MenuList menuName : purchaseMenus.keySet()){
             calcResult += purchaseMenus.get(menuName) * menuName.getAmount();
         }
