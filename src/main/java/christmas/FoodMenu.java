@@ -9,7 +9,7 @@ public class FoodMenu {
     private static final String COMMA = ",";
     private static final String HYPEN = "-";
     public enum MenuType{
-        APPETIZER, MAIN, DESSERT, DRINK;
+        APPETIZER, MAIN, DESSERT, DRINK
     }
     public enum MenuList{
         MUSHROOM_SOUP("양송이수프", 6000, MenuType.APPETIZER),
