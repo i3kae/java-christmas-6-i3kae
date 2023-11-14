@@ -6,8 +6,8 @@ import christmas.FoodMenu.MenuList;
 import java.util.Map;
 
 public class Customer{
-    private Integer visitDate;
-    private Map<FoodMenu.MenuList, Integer> purchaseMenus;
+    private final Integer visitDate;
+    private final Map<FoodMenu.MenuList, Integer> purchaseMenus;
     private static final EventCalculator eventCalculator = new EventCalculator();
 
     public Customer(Integer visitDate, Map<FoodMenu.MenuList, Integer> purchaseMenus){
