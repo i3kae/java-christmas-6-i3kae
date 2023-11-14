@@ -152,21 +152,12 @@ public class EventCalculator {
         return false;
     }
     public boolean isSpecialDay(Integer date){
-        if ((date - 1) % WEEK == SUNDAY || date == CHRISTMAS){
-            return true;
-        }
-        return false;
+        return ((date - 1) % WEEK == SUNDAY || date == CHRISTMAS);
     }
     public boolean isChristmasDDay(Integer date){
-        if (FIRST_DAY <= date && date <= CHRISTMAS){
-            return true;
-        }
-        return false;
+        return (FIRST_DAY <= date && date <= CHRISTMAS);
     }
     public boolean isPresentEvent(Integer purchaseAmount){
-        if (PRESENT_EVENT_AMOUNT <= purchaseAmount){
-            return true;
-        }
-        return false;
+        return (PRESENT_EVENT_AMOUNT <= purchaseAmount);
     }
 }
