@@ -1,5 +1,6 @@
 package christmas;
 
+import christmas.EventCalculator.EventType;
 import christmas.FoodMenu.MenuList;
 import java.util.EnumMap;
 import java.util.Map;
@@ -67,5 +68,25 @@ public class EventCalculatorTest {
                 customer.getPurchaseMenus(),
                 customer.calcPurchaseAmount())).isEqualTo(41538);
     }
-
+    @Test
+    @DisplayName("이벤트 적용 테스트 | 이벤트 적용(증정 이벤트 제외) 결과")
+    void calcSaleEventListTest(){
+        Map<EventType, Integer> appliedEvents = new EnumMap<>(EventType.class);
+        appliedEvents.put(EventType.CHRISTMAS, 3400);
+        appliedEvents.put(EventType.WEEKDAY, 12138);
+        appliedEvents.put(EventType.SPECIAL, 1000);
+        assertThat(eventCalculator.calcSaleEvent(customer.getVisitDate(), customer.getPurchaseMenus()))
+                .isEqualTo(appliedEvents);
+    }
+    @Test
+    @DisplayName("이벤트 적용 테스트 | 이벤트 적용(증정 이벤트 포함) 결과")
+    void calcAppliedEventListTest(){
+        Map<EventType, Integer> appliedEvents = new EnumMap<>(EventType.class);
+        appliedEvents.put(EventType.CHRISTMAS, 3400);
+        appliedEvents.put(EventType.WEEKDAY, 12138);
+        appliedEvents.put(EventType.SPECIAL, 1000);
+        appliedEvents.put(EventType.PRESENT, 25000);
+        assertThat(eventCalculator.calcEventList(customer.getVisitDate(), customer.calcPurchaseAmount(),
+                customer.getPurchaseMenus())).isEqualTo(appliedEvents);
+    }
 }
