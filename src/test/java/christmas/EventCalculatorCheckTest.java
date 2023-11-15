@@ -21,13 +21,13 @@ public class EventCalculatorCheckTest {
     }
     @ParameterizedTest(name = DISPLAY_PARAMETERIZED_TEST)
     @DisplayName("이벤트 적용 여부 테스트 | 평일 혜택 여부 확인")
-    @CsvSource(value = {"1:true", "2:false", "3:false", "4:true"}, delimiter = ':')
+    @CsvSource(value = {"1:false", "2:false", "3:true", "4:true"}, delimiter = ':')
     void weekdayEventCheckTest(Integer input, boolean result){
         assertThat(eventCalculator.isWeekday(input, testMenuList)).isEqualTo(result);
     }
     @ParameterizedTest(name = DISPLAY_PARAMETERIZED_TEST)
     @DisplayName("이벤트 적용 여부 테스트 | 주말 혜택 여부 확인")
-    @CsvSource(value = {"1:false", "2:true", "3:true", "4:false"}, delimiter = ':')
+    @CsvSource(value = {"1:true", "2:true", "3:false", "4:false"}, delimiter = ':')
     void weekendEventCheckTest(Integer input, boolean result){
         assertThat(eventCalculator.isWeekend(input, testMenuList)).isEqualTo(result);
     }
