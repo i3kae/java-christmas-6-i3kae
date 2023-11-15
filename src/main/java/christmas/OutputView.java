@@ -21,12 +21,15 @@ public class OutputView {
     public void printWelcome(){
         System.out.println(Main.WELCOME_MESSAGE.getMessage());
         System.out.println(AdditionalMessage.APPLIED_EVNET_AMOUNT.getMessage());
+        System.out.println();
     }
     public void printTotalPurchaseAmount(Integer amount){
         System.out.println(EventTitleMessage.TOTAL_PURCHASE_AMOUNT.getTitleMessage());
         System.out.println(decFormat.format(amount) + AMOUNT_MESSAGE);
+        System.out.println();
     }
     public void printEventPreview(Customer customer){
+        System.out.println();
         printSeperator();
         System.out.printf(Main.EVENT_BENEFIT_PREVIEW.getMessage() + "%n", customer.getVisitDate());
         printOrderMenus(customer.getPurchaseMenus());
@@ -42,6 +45,7 @@ public class OutputView {
         for (MenuList ordered : purchaseMenus.keySet()){
             System.out.printf(MENU_AND_COUNT + "%n", ordered.getName(), purchaseMenus.get(ordered));
         }
+        System.out.println();
     }
     private void printPresentEvent(Map<EventType, Integer> appliedEvents){
         System.out.println(EventTitleMessage.PRESENT_MENU.getTitleMessage());
@@ -50,7 +54,7 @@ public class OutputView {
             return;
         }
         System.out.println(NON_APPLIED);
-
+        System.out.println();
     }
     private void printAppliedEvent(Map<EventType, Integer> appliedEvents){
         System.out.println(EventTitleMessage.APPLIED_EVENTS.getTitleMessage());
@@ -62,6 +66,7 @@ public class OutputView {
             System.out.printf(EVENT_AND_DISCOUNT + decFormat.format(appliedEvents.get(event)) + AMOUNT_MESSAGE + "%n",
                     event.getEvent());
         }
+        System.out.println();
     }
     private void printTotalDiscount(Integer totalDiscount){
         System.out.println(EventTitleMessage.TOTAL_DISCOUNT_AMOUNT.getTitleMessage());
@@ -69,10 +74,12 @@ public class OutputView {
             System.out.print(MINUS);
         }
         System.out.println(decFormat.format(totalDiscount) + AMOUNT_MESSAGE);
+        System.out.println();
     }
     private void printEstimatedAmount(Integer estimatedAmount){
         System.out.println(EventTitleMessage.ESTIMATED_AMOUNT.getTitleMessage());
         System.out.println(decFormat.format(estimatedAmount) + AMOUNT_MESSAGE);
+        System.out.println();
     }
     private void printEventBadge(EventBadge eventBadge){
         System.out.println(EventTitleMessage.EVENT_BADGE_MENU.getTitleMessage());
@@ -84,6 +91,7 @@ public class OutputView {
         System.out.println(AdditionalMessage.CHRISTMAS_RANGE_ANNOUNCEMENT.getMessage());
     }
     public void printPurchaseMenuAnnouncement(){
+        System.out.println();
         System.out.println(Main.ORDER_MESSAGE.getMessage());
         System.out.println(AdditionalMessage.MAX_ORDER_COUNT.getMessage());
         System.out.println(AdditionalMessage.NOT_ORDER_ONLY_DRINK.getMessage());
@@ -99,6 +107,7 @@ public class OutputView {
         System.out.println(AdditionalMessage.EVENT_BADGE_ANNOUNCEMENT.getMessage());
         System.out.println(AdditionalMessage.NEW_YEAR_EVENT_ANNOUNCEMENT.getMessage());
         printSeperator();
+        System.out.println();
     }
     public void printSeperator(){
         System.out.println(SEPERATOR_LINE);
