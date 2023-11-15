@@ -94,4 +94,9 @@ public class ValidatorTest {
     void zeroMenuCountOrderTest(){
         assertThat(validator.purchaseChecker("바비큐립-4,해산물파스타-0")).isEqualTo(true);
     }
+    @Test
+    @DisplayName("구매 목록 검증 | 중복된 메뉴를 주문한 경우")
+    void duplicatedMenuOrderTest(){
+        assertThat(validator.purchaseChecker("시저샐러드-1,시저샐러드-1")).isEqualTo(true);
+    }
 }
