@@ -20,13 +20,14 @@ public class OutputView {
     private static final DecimalFormat decFormat = new DecimalFormat(THREE_NUMBER_FORMAT);
     public void printWelcome(){
         System.out.println(Main.WELCOME_MESSAGE.getMessage());
-        System.out.println(AdditionalMessage.APPLIED_EVNET_AMOUNT);
+        System.out.println(AdditionalMessage.APPLIED_EVNET_AMOUNT.getMessage());
     }
     public void printTotalPurchaseAmount(Integer amount){
         System.out.println(EventTitleMessage.TOTAL_PURCHASE_AMOUNT.getTitleMessage());
         System.out.println(decFormat.format(amount) + AMOUNT_MESSAGE);
     }
     public void printEventPreview(Customer customer){
+        printSeperator();
         System.out.printf(Main.EVENT_BENEFIT_PREVIEW.getMessage() + "%n", customer.getVisitDate());
         printOrderMenus(customer.getPurchaseMenus());
         printTotalPurchaseAmount(customer.calcPurchaseAmount());
