@@ -1,7 +1,6 @@
 package christmas;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.Messages.Main;
 import java.util.Map;
 
 public class InputView {
