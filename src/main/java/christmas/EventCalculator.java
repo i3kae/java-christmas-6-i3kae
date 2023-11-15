@@ -16,6 +16,7 @@ public class EventCalculator {
     private static final int SATURDAY = 1;
     private static final int SUNDAY = 2;
     private static final int DISCOUNT_WEEK = 2023;
+    private static final int MINIMUM_ORDER_AMOUNT = 10000;
     public enum EventType{
         WEEKDAY("평일 할인"),
         WEEKEND("주말 할인"),
@@ -46,7 +47,11 @@ public class EventCalculator {
     }
     public Map<EventType, Integer> calcEventList(Integer visitDate, Integer purchaseAmount,
                                                  Map<MenuList, Integer> purchaseMenus){
-        Map<EventType, Integer> appliedEvent = calcSaleEvent(visitDate, purchaseMenus);
+        Map<EventType, Integer> appliedEvent;
+        if (purchaseAmount < MINIMUM_ORDER_AMOUNT){
+            return new EnumMap<>(EventType.class);
+        }
+        appliedEvent = calcSaleEvent(visitDate, purchaseMenus);
         if (isPresentEvent(purchaseAmount)){
             appliedEvent.put(EventType.PRESENT, calcPresentEvent(purchaseAmount));
         }
