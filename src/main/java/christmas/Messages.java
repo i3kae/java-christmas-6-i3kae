@@ -23,6 +23,7 @@ public class Messages {
         NON_NUMERIC("[ERROR] 숫자가 아닌 값이 들어왔습니다."),
         NOT_IN_MENULIST("[ERROR] 메뉴 목록에 포함되어 있지 않은 메뉴입니다."),
         OVER_SIZE_ERROR("[ERROR] 주문 메뉴가 20개를 초과하였습니다."),
+        ONLY_ORDER_DRINK_MENU("[ERROR] 음료 메뉴만 주문할 수 없습니다."),
         NON_DATE("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요."),
         INVALID_ORDER("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         private final String message;
