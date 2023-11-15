@@ -34,7 +34,7 @@ public class OutputView {
         printPresentEvent(customer.calcAppliedEvent());
         printAppliedEvent(customer.calcAppliedEvent());
         printTotalDiscount(customer.calcTotalBenefitAmount());
-        printEstimatedAmount(customer.calcPurchaseAmount() - customer.calcTotalBenefitAmount());
+        printEstimatedAmount(customer.calcPurchaseAmount() - customer.calcTotalDiscountAmount());
         printEventBadge(customer.calcEventBadge());
     }
     private void printOrderMenus(Map<MenuList, Integer> purchaseMenus){

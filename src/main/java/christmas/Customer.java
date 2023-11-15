@@ -6,6 +6,7 @@ import christmas.FoodMenu.MenuList;
 import java.util.Map;
 
 public class Customer{
+    private static final Integer MINIMUN_PRESENT_AMOUNT = 120000;
     private final Integer visitDate;
     private final Map<FoodMenu.MenuList, Integer> purchaseMenus;
     private static final EventCalculator eventCalculator = new EventCalculator();
@@ -36,5 +37,11 @@ public class Customer{
     }
     public Map<MenuList, Integer> getPurchaseMenus(){
         return purchaseMenus;
+    }
+    public Integer calcTotalDiscountAmount(){
+        if (calcPurchaseAmount() >= MINIMUN_PRESENT_AMOUNT){
+            return calcTotalBenefitAmount() - MenuList.CHAMPAGNE.getAmount();
+        }
+        return calcTotalBenefitAmount();
     }
 }
