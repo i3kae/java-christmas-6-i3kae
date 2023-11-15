@@ -89,4 +89,13 @@ public class EventCalculatorTest {
         assertThat(eventCalculator.calcEventList(customer.getVisitDate(), customer.calcPurchaseAmount(),
                 customer.getPurchaseMenus())).isEqualTo(appliedEvents);
     }
+    @Test
+    @DisplayName("이벤트 적용 테스트 | 10,000원 미만의 메뉴를 주문한 경우")
+    void underAppliedEventAmountTest(){
+        Map<MenuList, Integer> menus = new EnumMap<>(MenuList.class);
+        Map<EventType, Integer> appliedEvents = new EnumMap<>(EventType.class);
+        menus.put(MenuList.ICECREAM, 1);
+        assertThat(eventCalculator.calcEventList(customer.getVisitDate(), MenuList.ICECREAM.getAmount(), menus))
+                .isEqualTo(appliedEvents);
+    }
 }
