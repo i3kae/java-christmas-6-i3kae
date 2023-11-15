@@ -54,4 +54,18 @@ public class EventCalculatorTest {
     void specialEventResultTest(Integer input, Integer result){
         assertThat(eventCalculator.calcSpecialEvent(input)).isEqualTo(result);
     }
+    @ParameterizedTest(name = DISPLAY_PARAMETERIZED_TEST)
+    @DisplayName("이벤트 적용 계산 테스트 | 이벤트 배지 결과")
+    @CsvSource(value = {"4000:없음", "6000:별", "10000:트리", "21000:산타"}, delimiter = ':')
+    void eventBadgeResultTest(Integer input, String result){
+        assertThat(eventCalculator.calcEventBadge(input).getEventBadge()).isEqualTo(result);
+    }
+    @Test
+    @DisplayName("이벤트 적용 계산 테스트 | 총할인 금액 결과")
+    void calcTotalDiscountTest(){
+        assertThat(eventCalculator.calcTotalDiscount(customer.getVisitDate(),
+                customer.getPurchaseMenus(),
+                customer.calcPurchaseAmount())).isEqualTo(41538);
+    }
+
 }
