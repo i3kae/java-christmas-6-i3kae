@@ -44,13 +44,26 @@ public class Messages {
         TOTAL_DISCOUNT_AMOUNT("<총혜택 금액>"),
         ESTIMATED_AMOUNT("<할인 후 예상 결제 금액>"),
         EVENT_BADGE_MENU("<12월 이벤트 배지>");
-
         private final String titleMessage;
         EventTitleMessage(String titleMessage){
             this.titleMessage = titleMessage;
         }
         public String getTitleMessage(){
             return titleMessage;
+        }
+    }
+    public enum AdditionalMessage{
+        APPLIED_EVNET_AMOUNT("총주문 금액이 10,000원 이상일 경우 이벤트 혜택을 받아보실 수 있습니다!"),
+        NOT_ORDER_ONLY_DRINK("음료만 주문하실 경우 주문이 어려운점 양해 부탁드립니다 (__)"),
+        MAX_ORDER_COUNT("총주문 갯수는 최대 20개까지 주문가능합니다!"),
+        VISIT_DATE_RANGE("방문 날짜는 1 ~ 31 사이의 숫자로 입력해주세요!"),
+        CHRISTMAS_RANGE_ANNOUNCEMENT("크리스마스 디데이 할인은 1 ~ 25일 사이에 진행됩니다!");
+        private final String message;
+        AdditionalMessage(String message){
+            this.message = message;
+        }
+        public String getMessage(){
+            return message;
         }
     }
 }
