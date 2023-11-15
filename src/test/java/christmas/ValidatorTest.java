@@ -57,36 +57,36 @@ public class ValidatorTest {
     }
     @Test
     @DisplayName("구매 목록 검증 | 비어있는 문자열의 경우")
-    void emptyInputPurchaseMenus(){
+    void emptyInputPurchaseMenusTest(){
         assertThat(validator.purchaseChecker("")).isEqualTo(true);
     }
     @ParameterizedTest(name = DISPLAY_PARAMETERIZED_TEST)
     @DisplayName("구매 목록 검증 | 잘못된 구분자의 경우")
     @ValueSource(strings = {",티본스테이크-4", "초코케이크-6,","양송이수프,10", ",", "-"})
-    void illigalSplitInputPurchaseMenus(String input){
+    void illigalSplitInputPurchaseMenusTest(String input){
         assertThat(validator.purchaseChecker(input)).isEqualTo(true);
     }
     @ParameterizedTest(name = DISPLAY_PARAMETERIZED_TEST)
     @DisplayName("구매 목록 검증 | 메뉴에 없는 메뉴인 경우")
     @ValueSource(strings = {"안심스테이크-6", "양송이수프-4,콜라-3", "티본스테이크-4,크리스마스-3"})
-    void notInMenuInputPurchaseMenus(String input){
+    void notInMenuInputPurchaseMenusTest(String input){
         assertThat(validator.purchaseChecker(input)).isEqualTo(true);
     }
     @ParameterizedTest(name = DISPLAY_PARAMETERIZED_TEST)
     @DisplayName("구매 목록 검증 | 갯수에 숫자가 아닌 값이 들어온 경우")
     @ValueSource(strings = {"티본스테이크-!,양송이수프-3", "해산물파스타-^"})
-    void nonNumricInputPurchaseMenus(String input){
+    void nonNumricInputPurchaseMenusTest(String input){
         assertThat(validator.purchaseChecker(input)).isEqualTo(true);
     }
     @ParameterizedTest(name = DISPLAY_PARAMETERIZED_TEST)
     @DisplayName("구매 목록 검증 | 메뉴의 총합이 20개가 넘어갈 경우")
     @ValueSource(strings = {"티본스테이크-30", "타파스-5,시저샐러드-8,아이스크림-4,레드와인-2,바비큐립-4"})
-    void overSizeInputPurchaseMenus(String input){
+    void overSizeInputPurchaseMenusTest(String input){
         assertThat(validator.purchaseChecker(input)).isEqualTo(true);
     }
     @Test
     @DisplayName("구매 목록 검증 | 음료 메뉴만 구매한 경우")
-    void onlyDrinkOrder(){
+    void onlyDrinkOrderTest(){
         assertThat(validator.purchaseChecker("제로콜라-5")).isEqualTo(true);
     }
     @Test

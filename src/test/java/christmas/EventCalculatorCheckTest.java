@@ -46,8 +46,9 @@ public class EventCalculatorCheckTest {
     @ParameterizedTest(name = DISPLAY_PARAMETERIZED_TEST)
     @DisplayName("이벤트 적용 여부 테스트 | 증정 혜택 여부 확인")
     @CsvSource(value = {"0:false", "119999:false", "120000:true", "3000000:true"}, delimiter = ':')
-    void weekendCheckTest(Integer input, boolean result){
+    void presentEventCheckTest(Integer input, boolean result){
         assertThat(eventCalculator.isPresentEvent(input)).isEqualTo(result);
     }
+
 
 }
