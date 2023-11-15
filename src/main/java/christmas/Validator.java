@@ -1,6 +1,7 @@
 package christmas;
 
 import christmas.FoodMenu.MenuList;
+import christmas.FoodMenu.MenuType;
 import christmas.Messages.ErrorMessage;
 
 public class Validator {
@@ -29,13 +30,18 @@ public class Validator {
     }
     public void menuCountChecker(String menuCount){
         int menuCnt = 0;
+        boolean onlyDrinkMenuFlag = true;
         for (String splitedComma : menuCount.split(COMMA)){
             regexSplitChecker(splitedComma, HYPHEN, 2);
             isMenu(splitedComma.split(HYPHEN)[MENU]);
             isNumeric(splitedComma.split(HYPHEN)[CNT]);
             menuCnt += Integer.parseInt(splitedComma.split(HYPHEN)[CNT]);
             isOverSize(menuCnt, MAX_SIZE);
+            if (MenuList.findMenu(splitedComma.split(HYPHEN)[MENU]).getMenuType() != MenuType.DRINK){
+                onlyDrinkMenuFlag = false;
+            }
         }
+        isOnlyDrinkMenu(onlyDrinkMenuFlag);
     }
     public void isMenu(String menuName){
         isEmpty(menuName, ErrorMessage.EMPTY_STR_ERROR);
@@ -81,6 +87,12 @@ public class Validator {
         if (cnt > maxSize){
             System.out.println(ErrorMessage.OVER_SIZE_ERROR.getMessage());
             throw new IllegalArgumentException(ErrorMessage.OVER_SIZE_ERROR.getMessage());
+        }
+    }
+    public void isOnlyDrinkMenu(boolean onlyDrinkMenuFlag){
+        if (onlyDrinkMenuFlag){
+            System.out.println(ErrorMessage.ONLY_ORDER_DRINK_MENU);
+            throw new IllegalArgumentException(ErrorMessage.ONLY_ORDER_DRINK_MENU.getMessage());
         }
     }
 }
