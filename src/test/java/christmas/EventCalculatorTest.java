@@ -5,10 +5,13 @@ import java.util.EnumMap;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class EventCalculatorTest {
+    private static final String DISPLAY_PARAMETERIZED_TEST = "{displayName} - [\"{0}\"]";
     private final Map<MenuList, Integer> testMenusList;
     private final EventCalculator eventCalculator;
     EventCalculatorTest(){
@@ -32,5 +35,23 @@ public class EventCalculatorTest {
     @DisplayName("이벤트 적용 계산 테스트 | 주말 이벤트 결과")
     void weekendEventResultTest(){
         assertThat(eventCalculator.calcWeekendEvent(testMenusList)).isEqualTo(2023 * 10);
+    }
+    @ParameterizedTest(name = DISPLAY_PARAMETERIZED_TEST)
+    @DisplayName("이벤트 적용 계산 테스트 | 증정 이벤트 결과")
+    @CsvSource(value = {"0:0", "10000:0", "120000:25000", "3000000:25000"}, delimiter = ':')
+    void presentEventResultTest(Integer input, Integer result){
+        assertThat(eventCalculator.calcPresentEvent(input)).isEqualTo(result);
+    }
+    @ParameterizedTest(name = DISPLAY_PARAMETERIZED_TEST)
+    @DisplayName("이벤트 적용 계산 테스트 | 크리스마스 이벤트 결과")
+    @CsvSource(value = {"1:1000", "10:1900", "25:3400", "26:0", "31:0"}, delimiter = ':')
+    void christmasEventResultTest(Integer input, Integer result){
+        assertThat(eventCalculator.calcChristmasEvent(input)).isEqualTo(result);
+    }
+    @ParameterizedTest(name = DISPLAY_PARAMETERIZED_TEST)
+    @DisplayName("이벤트 적용 계산 테스트 | 특별 이벤트 결과")
+    @CsvSource(value = {"1:0", "8:0", "3:1000", "10:1000", "25:1000"}, delimiter = ':')
+    void specialEventResultTest(Integer input, Integer result){
+        assertThat(eventCalculator.calcSpecialEvent(input)).isEqualTo(result);
     }
 }
