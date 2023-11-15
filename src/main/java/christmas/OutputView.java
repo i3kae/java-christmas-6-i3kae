@@ -3,6 +3,7 @@ package christmas;
 import christmas.EventCalculator.EventBadge;
 import christmas.EventCalculator.EventType;
 import christmas.FoodMenu.MenuList;
+import christmas.Messages.AdditionalMessage;
 import christmas.Messages.EventTitleMessage;
 import christmas.Messages.Main;
 import java.text.DecimalFormat;
@@ -18,6 +19,9 @@ public class OutputView {
     private static final DecimalFormat decFormat = new DecimalFormat(THREE_NUMBER_FORMAT);
     public void printWelcome(){
         System.out.println(Main.WELCOME_MESSAGE.getMessage());
+        System.out.println(AdditionalMessage.APPLIED_EVNET_AMOUNT.getMessage());
+        System.out.println(AdditionalMessage.MAX_ORDER_COUNT.getMessage());
+        System.out.println(AdditionalMessage.NOT_ORDER_ONLY_DRINK.getMessage());
     }
     public void printTotalPurchaseAmount(Integer amount){
         System.out.println(EventTitleMessage.TOTAL_PURCHASE_AMOUNT.getTitleMessage());
@@ -73,5 +77,15 @@ public class OutputView {
     private void printEventBadge(EventBadge eventBadge){
         System.out.println(EventTitleMessage.EVENT_BADGE_MENU.getTitleMessage());
         System.out.println(eventBadge.getEventBadge());
+    }
+    public void printVisitDateAnnouncement(){
+        System.out.println(Main.VISIT_MESSAGE.getMessage());
+        System.out.println(AdditionalMessage.VISIT_DATE_RANGE.getMessage());
+        System.out.println(AdditionalMessage.CHRISTMAS_RANGE_ANNOUNCEMENT.getMessage());
+    }
+    public void printPurchaseMenuAnnouncement(){
+        System.out.println(Main.ORDER_MESSAGE.getMessage());
+        System.out.println(AdditionalMessage.MAX_ORDER_COUNT.getMessage());
+        System.out.println(AdditionalMessage.NOT_ORDER_ONLY_DRINK.getMessage());
     }
 }
