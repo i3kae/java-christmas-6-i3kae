@@ -53,11 +53,19 @@ public class Messages {
         }
     }
     public enum AdditionalMessage{
-        APPLIED_EVNET_AMOUNT("총주문 금액이 10,000원 이상일 경우 이벤트 혜택을 받아보실 수 있습니다!"),
+        APPLIED_EVNET_AMOUNT("총주문 금액이 10,000원 이상일 경우 12월 이벤트 혜택을 받아보실 수 있습니다!"),
         NOT_ORDER_ONLY_DRINK("음료만 주문하실 경우 주문이 어려운점 양해 부탁드립니다 (__)"),
         MAX_ORDER_COUNT("총주문 갯수는 최대 20개까지 주문가능합니다!"),
         VISIT_DATE_RANGE("방문 날짜는 1 ~ 31 사이의 숫자로 입력해주세요!"),
-        CHRISTMAS_RANGE_ANNOUNCEMENT("크리스마스 디데이 할인은 1 ~ 25일 사이에 진행됩니다!");
+        CHRISTMAS_RANGE_ANNOUNCEMENT("크리스마스 디데이 할인은 1 ~ 25일 사이에 진행됩니다!"),
+        EVENT_LIST_ANNOUNCEMENT("이번 12월에 진행되는 이벤트에 대해 먼저 설명해드릴게요!"),
+        CHRISTMAS_EVENT_ANNOUNCEMENT("크리스마스 디데이 할인 - 1일에 1,000원으로 시작해 25일까지 하루가 지날 때 마다 100원을 추가로 할인해 드립니다!"),
+        WEEKDAY_EVENT_ANNOUNCEMENT("평일 할인 - 평일에 방문하셨을 때 디저트 메뉴당 2,023원을 할인해 드립니다!"),
+        WEEKEND_EVENT_ANNOUNCEMENT("주말 할인 - 주말에 방문하셨을 때 메인 메뉴당 2,023원을 할인해 드립니다!"),
+        SPECIAL_EVENT_ANNOUNCEMENT("특별 할인 - 일요일과 크리스마스에 방문하셨을 때 전체 금액에서 1,000원을 할인해 드립니다!"),
+        PRESENT_EVENT_ANNOUNCEMENT("증정 이벤트 - 메뉴를 120,000원 이상 구매해 주셨을 때 25,000원 상당의 샴페인을 증정해 드립니다!"),
+        EVENT_BADGE_ANNOUNCEMENT("뱃지 이벤트 - 총혜택 금액이 5,000원 이상일 때 별, 10,000원 이상일 때 트리, 20,000원 이상일 때 산타 뱃지를 드립니다!"),
+        NEW_YEAR_EVENT_ANNOUNCEMENT("이건 고객님한테만 알려드리는 정보인데 이번 이벤트에서 받으신 뱃지에 따라 내년 새해 이벤트에서 다양항 혜택을 계획하고 있다고 하네요!");
         private final String message;
         AdditionalMessage(String message){
             this.message = message;

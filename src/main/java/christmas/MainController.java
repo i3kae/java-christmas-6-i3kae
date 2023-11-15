@@ -11,11 +11,12 @@ public class MainController {
         Customer customer;
         Integer visitDate;
         Map<MenuList, Integer> purchaseMenus;
+        outputView.printWelcome();
+        outputView.printEventDetails();
         outputView.printVisitDateAnnouncement();
         visitDate = inputView.readDate();
         outputView.printPurchaseMenuAnnouncement();
         purchaseMenus = inputView.readPurchaseMenu();
-        outputView.printWelcome();
         customer = new Customer(visitDate, purchaseMenus);
         outputView.printEventPreview(customer);
     }

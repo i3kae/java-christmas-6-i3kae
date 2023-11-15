@@ -16,12 +16,11 @@ public class OutputView {
     private static final String THREE_NUMBER_FORMAT="###,###";
     private static final String NON_APPLIED = "없음";
     private static final String MINUS = "-";
+    private static final String SEPERATOR_LINE = "-------------------------------------------------";
     private static final DecimalFormat decFormat = new DecimalFormat(THREE_NUMBER_FORMAT);
     public void printWelcome(){
         System.out.println(Main.WELCOME_MESSAGE.getMessage());
-        System.out.println(AdditionalMessage.APPLIED_EVNET_AMOUNT.getMessage());
-        System.out.println(AdditionalMessage.MAX_ORDER_COUNT.getMessage());
-        System.out.println(AdditionalMessage.NOT_ORDER_ONLY_DRINK.getMessage());
+        System.out.println(AdditionalMessage.APPLIED_EVNET_AMOUNT);
     }
     public void printTotalPurchaseAmount(Integer amount){
         System.out.println(EventTitleMessage.TOTAL_PURCHASE_AMOUNT.getTitleMessage());
@@ -87,5 +86,20 @@ public class OutputView {
         System.out.println(Main.ORDER_MESSAGE.getMessage());
         System.out.println(AdditionalMessage.MAX_ORDER_COUNT.getMessage());
         System.out.println(AdditionalMessage.NOT_ORDER_ONLY_DRINK.getMessage());
+    }
+    public void printEventDetails(){
+        printSeperator();
+        System.out.println(AdditionalMessage.EVENT_LIST_ANNOUNCEMENT.getMessage());
+        System.out.println(AdditionalMessage.CHRISTMAS_EVENT_ANNOUNCEMENT.getMessage());
+        System.out.println(AdditionalMessage.WEEKDAY_EVENT_ANNOUNCEMENT.getMessage());
+        System.out.println(AdditionalMessage.WEEKEND_EVENT_ANNOUNCEMENT.getMessage());
+        System.out.println(AdditionalMessage.SPECIAL_EVENT_ANNOUNCEMENT.getMessage());
+        System.out.println(AdditionalMessage.PRESENT_EVENT_ANNOUNCEMENT.getMessage());
+        System.out.println(AdditionalMessage.EVENT_BADGE_ANNOUNCEMENT.getMessage());
+        System.out.println(AdditionalMessage.NEW_YEAR_EVENT_ANNOUNCEMENT.getMessage());
+        printSeperator();
+    }
+    public void printSeperator(){
+        System.out.println(SEPERATOR_LINE);
     }
 }
