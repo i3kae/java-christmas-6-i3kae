@@ -3,6 +3,8 @@ package christmas;
 import christmas.FoodMenu.MenuList;
 import christmas.FoodMenu.MenuType;
 import christmas.Messages.ErrorMessage;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Validator {
     private static final String COMMA = ",";
@@ -16,6 +18,7 @@ public class Validator {
         try {
             regexSplitChecker(userInput, COMMA, 1);
             menuCountChecker(userInput);
+            isDuplicated(userInput);
         } catch (IllegalArgumentException e){
             System.out.println(ErrorMessage.INVALID_ORDER.getMessage());
             return true;
@@ -102,6 +105,16 @@ public class Validator {
         if (menuCount == 0){
             System.out.println(ErrorMessage.ZERO_MENU_COUNT);
             throw new IllegalArgumentException(ErrorMessage.ZERO_MENU_COUNT.getMessage());
+        }
+    }
+    public void isDuplicated(String userInput){
+        List<String> purchaseMenus = new ArrayList<>();
+        for (String splited : userInput.split(COMMA)){
+            purchaseMenus.add(splited.split(HYPHEN)[MENU]);
+        }
+        if (purchaseMenus.size() != purchaseMenus.stream().distinct().count()){
+            System.out.println(ErrorMessage.DUPLICATED_PURCHASE_MENU.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_PURCHASE_MENU.getMessage());
         }
     }
 }
