@@ -8,18 +8,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CustomerTest {
-    @Test
-    @DisplayName("총구매 금액 계산 테스트 - 정상적인 경우")
-    void totalPurchaseAmountTest(){
+    Customer customer;
+    CustomerTest(){
         EnumMap<FoodMenu.MenuList, Integer> purchaseMenus = new EnumMap<>(FoodMenu.MenuList.class);
-        Customer customer;
-
         purchaseMenus.put(MenuList.TAPAS, 10);
         purchaseMenus.put(MenuList.BBQ_RIP, 2);
         purchaseMenus.put(MenuList.CHOCORATE_CAKE, 3);
         purchaseMenus.put(MenuList.RED_WINE, 1);
-        customer = new Customer(1, purchaseMenus);
-
+        customer = new Customer(25, purchaseMenus);
+    }
+    @Test
+    @DisplayName("총구매 금액 계산 테스트 | 총구매 금액 테스트")
+    void totalPurchaseAmountTest(){
         assertThat(customer.calcPurchaseAmount()).isEqualTo(268000);
     }
 }
