@@ -25,11 +25,11 @@ public class Customer{
     public Map<EventType, Integer> calcAppliedEvent(){
         return eventCalculator.calcEventList(visitDate, calcPurchaseAmount(), purchaseMenus);
     }
-    public Integer calcTotalDiscountedAmount(){
+    public Integer calcTotalBenefitAmount(){
         return eventCalculator.calcTotalDiscount(visitDate, purchaseMenus, calcPurchaseAmount());
     }
     public EventBadge calcEventBadge(){
-        return eventCalculator.calcEventBadge(calcTotalDiscountedAmount());
+        return eventCalculator.calcEventBadge(calcTotalBenefitAmount());
     }
     public Integer getVisitDate(){
         return visitDate;

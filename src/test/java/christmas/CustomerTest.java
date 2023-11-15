@@ -28,7 +28,7 @@ public class CustomerTest {
     @Test
     @DisplayName("총구매 금액 계산 테스트 | 총혜택 금액 테스트")
     void totalDiscountAmountTest(){
-        assertThat(customer.calcTotalDiscountedAmount()).isEqualTo(35469);
+        assertThat(customer.calcTotalBenefitAmount()).isEqualTo(35469);
     }
     @Test
     @DisplayName("총구매 금액 계산 테스트 | 적용 이벤트 테스트")
