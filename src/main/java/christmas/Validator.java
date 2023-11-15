@@ -10,6 +10,8 @@ public class Validator {
     private static final int MENU = 0;
     private static final int CNT = 1;
     private static final int MAX_SIZE = 20;
+    private static final int START_DAY = 1;
+    private static final int END_DAY = 31;
     public boolean purchaseChecker(String userInput){
         try {
             regexSplitChecker(userInput, COMMA, 1);
@@ -79,7 +81,7 @@ public class Validator {
         return false;
     }
     public void isDate(Integer inputDate){
-        if (inputDate < 1 || 31 < inputDate){
+        if (inputDate < START_DAY || END_DAY < inputDate){
             System.out.println(ErrorMessage.NON_DATE.getMessage());
             throw new IllegalArgumentException(ErrorMessage.NON_DATE.getMessage());
         }
