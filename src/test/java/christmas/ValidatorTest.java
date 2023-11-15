@@ -89,4 +89,9 @@ public class ValidatorTest {
     void onlyDrinkOrder(){
         assertThat(validator.purchaseChecker("제로콜라-5")).isEqualTo(true);
     }
+    @Test
+    @DisplayName("구매 목록 검증 | 갯수가 0인 메뉴를 주문한 경우")
+    void zeroMenuCountOrderTest(){
+        assertThat(validator.purchaseChecker("바비큐립-4,해산물파스타-0")).isEqualTo(true);
+    }
 }
