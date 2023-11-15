@@ -34,7 +34,7 @@ public class EventCalculatorTest {
     @Test
     @DisplayName("이벤트 적용 계산 테스트 | 주말 이벤트 결과")
     void weekendEventResultTest(){
-        assertThat(eventCalculator.calcWeekendEvent(testMenusList)).isEqualTo(2023 * 10);
+        assertThat(eventCalculator.calcWeekendEvent(testMenusList)).isEqualTo(2023 * 9);
     }
     @ParameterizedTest(name = DISPLAY_PARAMETERIZED_TEST)
     @DisplayName("이벤트 적용 계산 테스트 | 증정 이벤트 결과")
