@@ -10,16 +10,9 @@ public class Validator {
     private static final int CNT = 1;
     private static final int MAX_SIZE = 20;
     public boolean purchaseChecker(String userInput){
-        int menuCnt = 0;
         try {
             regexSplitChecker(userInput, COMMA, 1);
-            for (String splitedComma : userInput.split(COMMA)){
-                regexSplitChecker(splitedComma, HYPHEN, 2);
-                isMenu(splitedComma.split(HYPHEN)[MENU]);
-                isNumeric(splitedComma.split(HYPHEN)[CNT]);
-                menuCnt += Integer.parseInt(splitedComma.split(HYPHEN)[CNT]);
-                isOverSize(menuCnt, MAX_SIZE);
-            }
+            menuCountChecker(userInput);
         } catch (IllegalArgumentException e){
             System.out.println(ErrorMessage.INVALID_ORDER.getMessage());
             return true;
@@ -32,6 +25,16 @@ public class Validator {
         if (userInput.startsWith(regex) || userInput.endsWith(regex) || userInput.split(regex).length < minSepCnt){
             System.out.println(ErrorMessage.SPLIT_ERROR.getMessage());
             throw new IllegalArgumentException(ErrorMessage.SPLIT_ERROR.getMessage());
+        }
+    }
+    public void menuCountChecker(String menuCount){
+        int menuCnt = 0;
+        for (String splitedComma : menuCount.split(COMMA)){
+            regexSplitChecker(splitedComma, HYPHEN, 2);
+            isMenu(splitedComma.split(HYPHEN)[MENU]);
+            isNumeric(splitedComma.split(HYPHEN)[CNT]);
+            menuCnt += Integer.parseInt(splitedComma.split(HYPHEN)[CNT]);
+            isOverSize(menuCnt, MAX_SIZE);
         }
     }
     public void isMenu(String menuName){
