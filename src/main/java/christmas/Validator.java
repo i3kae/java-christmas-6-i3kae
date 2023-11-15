@@ -35,6 +35,7 @@ public class Validator {
             regexSplitChecker(splitedComma, HYPHEN, 2);
             isMenu(splitedComma.split(HYPHEN)[MENU]);
             isNumeric(splitedComma.split(HYPHEN)[CNT]);
+            isZeroMenuCount(Integer.parseInt(splitedComma.split(HYPHEN)[CNT]));
             menuCnt += Integer.parseInt(splitedComma.split(HYPHEN)[CNT]);
             isOverSize(menuCnt, MAX_SIZE);
             if (MenuList.findMenu(splitedComma.split(HYPHEN)[MENU]).getMenuType() != MenuType.DRINK){
@@ -93,6 +94,12 @@ public class Validator {
         if (onlyDrinkMenuFlag){
             System.out.println(ErrorMessage.ONLY_ORDER_DRINK_MENU);
             throw new IllegalArgumentException(ErrorMessage.ONLY_ORDER_DRINK_MENU.getMessage());
+        }
+    }
+    public void isZeroMenuCount(Integer menuCount){
+        if (menuCount == 0){
+            System.out.println(ErrorMessage.ZERO_MENU_COUNT);
+            throw new IllegalArgumentException(ErrorMessage.ZERO_MENU_COUNT.getMessage());
         }
     }
 }
