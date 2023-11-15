@@ -12,29 +12,29 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class EventCalculatorTest {
     private static final String DISPLAY_PARAMETERIZED_TEST = "{displayName} - [\"{0}\"]";
-    private final Map<MenuList, Integer> testMenusList;
+    private final Customer customer;
     private final EventCalculator eventCalculator;
     EventCalculatorTest(){
-        testMenusList = new EnumMap<>(MenuList.class);
+        Map<MenuList, Integer> menus = new EnumMap<>(MenuList.class);
         eventCalculator = new EventCalculator();
-        testMenusList.put(MenuList.BBQ_RIP, 3);
-        testMenusList.put(MenuList.T_BONE_STKAE, 2);
-        testMenusList.put(MenuList.CHRISTMAS_PASTA, 4);
-        testMenusList.put(MenuList.CHOCORATE_CAKE, 1);
-        testMenusList.put(MenuList.ICECREAM, 5);
-        testMenusList.put(MenuList.TAPAS, 2);
-        testMenusList.put(MenuList.RED_WINE, 1);
-
+        menus.put(MenuList.BBQ_RIP, 3);
+        menus.put(MenuList.T_BONE_STKAE, 2);
+        menus.put(MenuList.CHRISTMAS_PASTA, 4);
+        menus.put(MenuList.CHOCORATE_CAKE, 1);
+        menus.put(MenuList.ICECREAM, 5);
+        menus.put(MenuList.TAPAS, 2);
+        menus.put(MenuList.RED_WINE, 1);
+        customer = new Customer(25, menus);
     }
     @Test
     @DisplayName("이벤트 적용 계산 테스트 | 평일 이벤트 결과")
     void weekdayEventResultTest(){
-        assertThat(eventCalculator.calcWeekdayEvent(testMenusList)).isEqualTo(2023 * 6);
+        assertThat(eventCalculator.calcWeekdayEvent(customer.getPurchaseMenus())).isEqualTo(2023 * 6);
     }
     @Test
     @DisplayName("이벤트 적용 계산 테스트 | 주말 이벤트 결과")
     void weekendEventResultTest(){
-        assertThat(eventCalculator.calcWeekendEvent(testMenusList)).isEqualTo(2023 * 9);
+        assertThat(eventCalculator.calcWeekendEvent(customer.getPurchaseMenus())).isEqualTo(2023 * 9);
     }
     @ParameterizedTest(name = DISPLAY_PARAMETERIZED_TEST)
     @DisplayName("이벤트 적용 계산 테스트 | 증정 이벤트 결과")
