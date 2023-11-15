@@ -3,18 +3,12 @@ package christmas;
 import christmas.EventCalculator.EventBadge;
 import christmas.EventCalculator.EventType;
 import christmas.FoodMenu.MenuList;
+import christmas.Messages.EventTitleMessage;
 import christmas.Messages.Main;
 import java.text.DecimalFormat;
 import java.util.Map;
 
 public class OutputView {
-    private static final String TOTAL_PURCHASE_AMOUNT="<할인 전 총주문 금액>";
-    private static final String ORDER_MENU = "<주문 메뉴>";
-    private static final String PRESENT_MENU = "<증정 메뉴>";
-    private static final String APPLIED_EVENTS = "<혜택 내역>";
-    private static final String TOTAL_DISCOUNT_AMOUNT = "<총혜택 금액>";
-    private static final String ESTIMATED_AMOUNT = "<할인 후 예상 결제 금액>";
-    private static final String EVENT_BADGE_MENU = "<12월 이벤트 배지>";
     private static final String MENU_AND_COUNT = "%s %d개";
     private static final String EVENT_AND_DISCOUNT = "%s: -";
     private static final String AMOUNT_MESSAGE="원";
@@ -26,7 +20,7 @@ public class OutputView {
         System.out.println(Main.WELCOME_MESSAGE.getMessage());
     }
     public void printTotalPurchaseAmount(Integer amount){
-        System.out.println(TOTAL_PURCHASE_AMOUNT);
+        System.out.println(EventTitleMessage.TOTAL_PURCHASE_AMOUNT.getTitleMessage());
         System.out.println(decFormat.format(amount) + AMOUNT_MESSAGE);
     }
     public void printEventPreview(Customer customer){
@@ -40,13 +34,13 @@ public class OutputView {
         printEventBadge(customer.calcEventBadge());
     }
     private void printOrderMenus(Map<MenuList, Integer> purchaseMenus){
-        System.out.println(ORDER_MENU);
+        System.out.println(EventTitleMessage.ORDER_MENU.getTitleMessage());
         for (MenuList ordered : purchaseMenus.keySet()){
             System.out.printf(MENU_AND_COUNT + "%n", ordered.getName(), purchaseMenus.get(ordered));
         }
     }
     private void printPresentEvent(Map<EventType, Integer> appliedEvents){
-        System.out.println(PRESENT_MENU);
+        System.out.println(EventTitleMessage.PRESENT_MENU.getTitleMessage());
         if (appliedEvents.containsKey(EventType.PRESENT)){
             System.out.printf(MENU_AND_COUNT + "%n", MenuList.CHAMPAGNE.getName(), 1);
             return;
@@ -55,7 +49,7 @@ public class OutputView {
 
     }
     private void printAppliedEvent(Map<EventType, Integer> appliedEvents){
-        System.out.println(APPLIED_EVENTS);
+        System.out.println(EventTitleMessage.APPLIED_EVENTS.getTitleMessage());
         if (appliedEvents.isEmpty()){
             System.out.println(NON_APPLIED);
             return;
@@ -66,18 +60,18 @@ public class OutputView {
         }
     }
     private void printTotalDiscount(Integer totalDiscount){
-        System.out.println(TOTAL_DISCOUNT_AMOUNT);
+        System.out.println(EventTitleMessage.TOTAL_DISCOUNT_AMOUNT.getTitleMessage());
         if (totalDiscount != 0){
             System.out.print(MINUS);
         }
         System.out.println(decFormat.format(totalDiscount) + AMOUNT_MESSAGE);
     }
     private void printEstimatedAmount(Integer estimatedAmount){
-        System.out.println(ESTIMATED_AMOUNT);
+        System.out.println(EventTitleMessage.ESTIMATED_AMOUNT.getTitleMessage());
         System.out.println(decFormat.format(estimatedAmount) + AMOUNT_MESSAGE);
     }
     private void printEventBadge(EventBadge eventBadge){
-        System.out.println(EVENT_BADGE_MENU);
+        System.out.println(EventTitleMessage.EVENT_BADGE_MENU.getTitleMessage());
         System.out.println(eventBadge.getEventBadge());
     }
 }

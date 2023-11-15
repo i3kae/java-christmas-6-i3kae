@@ -35,4 +35,22 @@ public class Messages {
             return message;
         }
     }
+
+    public enum EventTitleMessage{
+        TOTAL_PURCHASE_AMOUNT("<할인 전 총주문 금액>"),
+        ORDER_MENU("<주문 메뉴>"),
+        PRESENT_MENU("<증정 메뉴>"),
+        APPLIED_EVENTS("<혜택 내역>"),
+        TOTAL_DISCOUNT_AMOUNT("<총혜택 금액>"),
+        ESTIMATED_AMOUNT("<할인 후 예상 결제 금액>"),
+        EVENT_BADGE_MENU("<12월 이벤트 배지>");
+
+        private final String titleMessage;
+        EventTitleMessage(String titleMessage){
+            this.titleMessage = titleMessage;
+        }
+        public String getTitleMessage(){
+            return titleMessage;
+        }
+    }
 }
